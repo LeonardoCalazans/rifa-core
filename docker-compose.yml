@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-raffle
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: raffle
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
