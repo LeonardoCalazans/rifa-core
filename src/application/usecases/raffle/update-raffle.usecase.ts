@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { IRaffleRepository } from 'src/infra/repositories/abstractions/raffle.repository.interface';
 import { UpdateRafleDto, RaffleDto } from 'src/presentation/v1/dtos';
+
 @Injectable()
 export class UpdateRaffleUsecase {
   constructor(private readonly raffleRepository: IRaffleRepository) {}
