@@ -18,11 +18,11 @@ export class Raffle {
   @Prop()
   description: string;
 
-  @Prop({ type: [Number] })
-  chosenNumbers: number[];
+  @Prop()
+  maximunNumberRaffles: number;
 
-  @Prop({ type: [Number] })
-  chooseNumber: number[];
+  @Prop()
+  selectedNumbers: number[];
 
   @Prop()
   createdAt: Date;

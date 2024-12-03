@@ -1,6 +1,11 @@
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { UpdateRafleDto } from 'src/presentation/v1/dtos';
+import {
+  CreateRaffleDto,
+  CreateRaffleResponseDto,
+  RaffleDto,
+  UpdateRafleDto,
+} from 'src/presentation/v1/dtos';
 import { IRaffleRepository } from './abstractions/raffle.repository.interface';
 import { Raffle, RaffleDocument } from '../data/mongo/entities';
 
@@ -10,19 +15,30 @@ export class RaffleRepository implements IRaffleRepository {
     private readonly raffleModel: Model<RaffleDocument>,
   ) {}
 
-  async createRaffle(data: Raffle): Promise<Raffle> {
+  async createRaffle(data: CreateRaffleDto): Promise<CreateRaffleResponseDto> {
     const createdRaffle = new this.raffleModel(data);
     const savedRaffle = await createdRaffle.save();
     return savedRaffle;
   }
 
-  async getRaffles(id: string): Promise<Raffle[]> {
-    const raffle = this.raffleModel.find({ id }).exec();
+  async getRaffles(idUser: string): Promise<RaffleDto[]> {
+    const raffle = await this.raffleModel.find({ idUser }).exec();
     return raffle;
   }
 
-  async updateRaffle(id: string, data: UpdateRafleDto): Promise<Raffle> {
-    const raffle = this.raffleModel.findOneAndUpdate({ id }, data).exec();
+  async updateRaffle(idUser: string, data: UpdateRafleDto): Promise<RaffleDto> {
+    const raffle = await this.raffleModel
+      .findOneAndUpdate(
+        {
+          _id: data.id,
+          idUser: idUser,
+        },
+        {
+          ...data,
+        },
+      )
+      .exec();
+
     return raffle;
   }
 }
