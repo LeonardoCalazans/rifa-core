@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { CreateRaffleDto, RaffleDto, UpdateRafleDto } from '../dtos';
 import {
   RaffleCreateUsecase,
@@ -6,7 +14,9 @@ import {
   UpdateRaffleUsecase,
 } from 'src/application/usecases/raffle';
 import { Raffle } from 'src/infra/data/mongo/entities';
+import { AuthGuard } from 'src/Guard/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller({
   path: 'raffle',
   version: '1',
