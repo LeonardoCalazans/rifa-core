@@ -2,8 +2,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import {
   FindByEmailResponseDto,
-  UserDto,
-  UserResponseDto,
+  CreateUserDto,
+  CreateUserResponseDto,
 } from 'src/presentation/v1/dtos';
 import { User, UserDocument } from '../data/mongo/entities';
 import { IUserRepository } from './abstractions/user.repository.interface';
@@ -14,7 +14,10 @@ export class UserRepository implements IUserRepository {
     private readonly userModel: Model<UserDocument>,
   ) {}
 
-  async createUser(data: UserDto, id: string): Promise<UserResponseDto> {
+  async createUser(
+    data: CreateUserDto,
+    id: string,
+  ): Promise<CreateUserResponseDto> {
     const createdUser = new this.userModel({
       ...data,
       id,

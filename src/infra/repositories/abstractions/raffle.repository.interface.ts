@@ -1,8 +1,17 @@
-import { Raffle } from 'src/infra/data/mongo/entities';
-import { UpdateRafleDto } from 'src/presentation/v1/dtos';
+import {
+  CreateRaffleDto,
+  CreateRaffleResponseDto,
+  RaffleDto,
+  UpdateRafleDto,
+} from 'src/presentation/v1/dtos';
 
 export abstract class IRaffleRepository {
-  abstract createRaffle(data: Raffle): Promise<Raffle>;
-  abstract getRaffles(id: string): Promise<Raffle[]>;
-  abstract updateRaffle(id: string, data: UpdateRafleDto): Promise<Raffle>;
+  abstract createRaffle(
+    data: CreateRaffleDto,
+  ): Promise<CreateRaffleResponseDto>;
+  abstract getRaffles(idUser: string): Promise<RaffleDto[]>;
+  abstract updateRaffle(
+    idUser: string,
+    data: UpdateRafleDto,
+  ): Promise<RaffleDto>;
 }

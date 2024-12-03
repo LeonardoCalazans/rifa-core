@@ -13,7 +13,6 @@ import {
   RafflesSearchByUserUsecase,
   UpdateRaffleUsecase,
 } from 'src/application/usecases/raffle';
-import { Raffle } from 'src/infra/data/mongo/entities';
 import { AuthGuard } from 'src/Guard/auth.guard';
 
 @UseGuards(AuthGuard)
@@ -29,7 +28,7 @@ export class RaffleController {
   ) {}
 
   @Post()
-  async createRaffle(@Body() raffle: CreateRaffleDto): Promise<Raffle> {
+  async createRaffle(@Body() raffle: CreateRaffleDto): Promise<RaffleDto> {
     try {
       return await this.raffleCreateUseCase.execute(raffle);
     } catch (error) {

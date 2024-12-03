@@ -1,10 +1,13 @@
 import {
   FindByEmailResponseDto,
-  UserDto,
-  UserResponseDto,
+  CreateUserDto,
+  CreateUserResponseDto,
 } from 'src/presentation/v1/dtos';
 
 export abstract class IUserRepository {
-  abstract createUser(data: UserDto, id: string): Promise<UserResponseDto>;
+  abstract createUser(
+    data: CreateUserDto,
+    id: string,
+  ): Promise<CreateUserResponseDto>;
   abstract findByEmail(email: string): Promise<FindByEmailResponseDto>;
 }

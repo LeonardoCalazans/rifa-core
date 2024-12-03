@@ -1,13 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { v7 as uuidV7 } from 'uuid';
 import { hashSync as bcryptHashSync } from 'bcrypt';
-import { UserDto, UserResponseDto } from 'src/presentation/v1/dtos/user-dto';
+import {
+  CreateUserDto,
+  CreateUserResponseDto,
+} from 'src/presentation/v1/dtos/user-dto';
 import { IUserRepository } from 'src/infra/repositories/abstractions/user.repository.interface';
 
 @Injectable()
 export class CreateUserUseCase {
   constructor(private readonly userRepository: IUserRepository) {}
-  async execute(user: UserDto): Promise<UserResponseDto> {
+  async execute(user: CreateUserDto): Promise<CreateUserResponseDto> {
     try {
       const id = uuidV7();
       const password = bcryptHashSync(user.password, 10);
