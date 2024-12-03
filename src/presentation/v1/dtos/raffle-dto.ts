@@ -3,6 +3,6 @@ export class RaffleDto {
   idUser: string;
   name: string;
   description: string;
-  chosenNumbers: number[];
-  chooseNumber: number[];
+  maximunNumberRaffles: number;
+  selectedNumbers: number[];
 }

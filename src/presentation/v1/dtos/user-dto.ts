@@ -1,11 +1,25 @@
-export class UserDto {
+import {
+  IsEmail,
+  IsNumberString,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
+
+export class CreateUserDto {
+  @IsString()
   username: string;
+
+  @IsNumberString()
   document: string;
+
+  @IsEmail()
   email: string;
+
+  @IsStrongPassword()
   password: string;
 }
 
-export class UserResponseDto {
+export class CreateUserResponseDto {
   id: string;
   username: string;
   document: string;
