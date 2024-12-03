@@ -12,7 +12,7 @@ export class User {
   @Prop()
   username: string;
 
-  @Prop()
+  @Prop({ unique: true })
   document: string;
 
   @Prop()
