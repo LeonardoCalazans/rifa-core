@@ -11,3 +11,11 @@ export class UserResponseDto {
   document: string;
   email: string;
 }
+
+export class FindByEmailResponseDto {
+  id: string;
+  username: string;
+  document: string;
+  email: string;
+  password: string;
+}
