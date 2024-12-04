@@ -5,23 +5,25 @@ import {
   CreateUserDto,
   CreateUserResponseDto,
 } from 'src/presentation/v1/dtos/user-dto';
-import { IUserRepository } from 'src/infra/repositories/abstractions/user.repository.interface';
+import { IUserService } from 'src/infra/data/postgreSQL/abstractions';
 
 @Injectable()
 export class CreateUserUseCase {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor(private readonly userService: IUserService) {}
   async execute(user: CreateUserDto): Promise<CreateUserResponseDto> {
     try {
       const id = uuidV7();
       const password = bcryptHashSync(user.password, 10);
-      const createdUser = await this.userRepository.createUser(
-        {
-          ...user,
-          password,
-        },
-        id,
-      );
-
+      //   {
+      //     ...user,
+      //     password,
+      //   },
+      //   id,
+      // );
+      const createdUser = await this.userService.createUser(id, {
+        password,
+        ...user,
+      });
       return {
         id: createdUser.id,
         username: createdUser.username,
