@@ -5,10 +5,11 @@ import {
   RafflesSearchByUserUsecase,
   UpdateRaffleUsecase,
 } from './usecases/raffle';
-import { DomainModule } from 'src/infra/infra.module';
+import { MongoModule } from 'src/infra/data/mongo/mongoose.module';
 import { CreateUserUseCase } from './usecases/user';
 import { SignInUsecase } from './usecases/auth';
 import { ConfigService } from '@nestjs/config';
+import { PostgresModule } from 'src/infra/data/postgreSQL/postgres.module';
 
 const providers = [
   RaffleCreateUsecase,
@@ -20,7 +21,8 @@ const providers = [
 
 @Module({
   imports: [
-    DomainModule,
+    MongoModule,
+    PostgresModule,
     JwtModule.registerAsync({
       global: true,
       imports: [],
