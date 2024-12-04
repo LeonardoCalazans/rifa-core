@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { SignInDto, SignInResponseDto } from 'src/presentation/v1/dtos';
 import { compareSync as bcryptCompareSync } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import { IUserRepository } from 'src/infra/repositories/abstractions/user.repository.interface';
+import { IUserRepository } from 'src/infra/data/mongo/abstractions/user.repository.interface';
 
 @Injectable()
 export class SignInUsecase {

@@ -6,8 +6,8 @@ import {
   RaffleDto,
   UpdateRafleDto,
 } from 'src/presentation/v1/dtos';
-import { IRaffleRepository } from './abstractions/raffle.repository.interface';
-import { Raffle, RaffleDocument } from '../data/mongo/entities';
+import { IRaffleRepository } from '../abstractions/raffle.repository.interface';
+import { Raffle, RaffleDocument } from '../entities';
 
 export class RaffleRepository implements IRaffleRepository {
   constructor(

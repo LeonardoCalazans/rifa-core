@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RaffleSchema, Raffle, User, UserSchema } from './data/mongo/entities';
+import { RaffleSchema, Raffle, User, UserSchema } from './entities';
 import { RaffleRepository } from './repositories';
-import { IRaffleRepository } from './repositories/abstractions/raffle.repository.interface';
-import { IUserRepository } from './repositories/abstractions/user.repository.interface';
+import { IRaffleRepository } from './abstractions/raffle.repository.interface';
+import { IUserRepository } from './abstractions/user.repository.interface';
 import { UserRepository } from './repositories/user.repository';
 
 const providers = [
@@ -30,4 +30,4 @@ const providers = [
   providers,
   exports: providers,
 })
-export class DomainModule {}
+export class MongoModule {}

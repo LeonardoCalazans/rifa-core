@@ -5,8 +5,8 @@ import {
   CreateUserDto,
   CreateUserResponseDto,
 } from 'src/presentation/v1/dtos';
-import { User, UserDocument } from '../data/mongo/entities';
-import { IUserRepository } from './abstractions/user.repository.interface';
+import { User, UserDocument } from '../entities';
+import { IUserRepository } from '../abstractions/user.repository.interface';
 
 export class UserRepository implements IUserRepository {
   constructor(

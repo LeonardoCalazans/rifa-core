@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Raffle } from 'src/infra/data/mongo/entities';
-import { IRaffleRepository } from 'src/infra/repositories/abstractions/raffle.repository.interface';
+import { IRaffleRepository } from 'src/infra/data/mongo/abstractions/raffle.repository.interface';
 import { CreateRaffleDto } from 'src/presentation/v1/dtos';
 
 @Injectable()
