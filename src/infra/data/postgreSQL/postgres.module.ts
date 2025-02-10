@@ -3,11 +3,12 @@ import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './entities/user.entity';
 import { UserService } from './service/user.service';
-import { IUserService } from './abstractions';
+import { IUser } from 'src/infra/abstractions';
+import { dataSourceOptions } from './typeOrm.migration-config';
 
 const providers = [
   {
-    provide: IUserService,
+    provide: IUser,
     useClass: UserService,
   },
 ];
@@ -15,17 +16,7 @@ const providers = [
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      useFactory: async (configService: ConfigService) => ({
-        type: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: +configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        migrations: [__dirname + '/migrations/*{.ts,.js}'],
-        synchronize: false,
-      }),
+      useFactory: async () => dataSourceOptions,
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([UserEntity]),

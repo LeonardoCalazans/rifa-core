@@ -11,7 +11,8 @@ export class RaffleTable1733267775436 implements MigrationInterface {
             description varchar(512) NULL,
             maximunNumberRaffles int NOT NULL,
             selectedNumbers int[] NOT NULL,
-            CONSTRAINT raffle_pk PRIMARY KEY (id)
+            CONSTRAINT raffle_pk PRIMARY KEY (id),
+            CONSTRAINT raffle_fk FOREIGN KEY (idUser) REFERENCES "user"(id)
         )`,
     );
   }
@@ -21,3 +22,5 @@ export class RaffleTable1733267775436 implements MigrationInterface {
     await queryRunner.query(`DROP EXTENSION IF EXISTS "uuid-ossp";`);
   }
 }
+
+//usar tyorm generate

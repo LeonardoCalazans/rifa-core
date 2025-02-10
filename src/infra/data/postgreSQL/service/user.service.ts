@@ -7,10 +7,10 @@ import {
   FindByEmailResponseDto,
 } from 'src/presentation/v1/dtos';
 import { UserEntity } from '../entities';
-import { IUserService } from '../abstractions';
+import { IUser } from 'src/infra/abstractions';
 
 @Injectable()
-export class UserService implements IUserService {
+export class UserService implements IUser {
   constructor(
     @InjectRepository(UserEntity)
     private usersRepository: Repository<UserEntity>,
